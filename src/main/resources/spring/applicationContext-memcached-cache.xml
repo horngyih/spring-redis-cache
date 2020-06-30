@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+">
+    <bean id="xmemcacheClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">
+        <constructor-arg>
+            <list>
+                <bean class="java.net.InetSocketAddress">
+                    <constructor-arg>
+                        <value>localhost</value>
+                    </constructor-arg>
+                    <constructor-arg>
+                        <value>11211</value>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="cacheManager" class="tech.coderonin.spring.memcached.cache.MemcachedCacheManager">
+        <property name="defaultExpiration" value="3"/>
+    </bean>
+</beans>
